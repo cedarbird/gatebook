@@ -1,0 +1,6 @@
+<h1>Edit Submission</h1>
+<%= form_tag update_note_path, method: 'patch' do %>
+  <%= text_field_tag :title, @note.title, class: "form-control title-field" %>
+  <%= text_area_tag :content, @note.content, class: "form-control content-field" %>
+  <%= submit_tag 'save', class: "btn primary-btn" %>
+<% end %>
