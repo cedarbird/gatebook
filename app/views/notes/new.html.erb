@@ -2,8 +2,8 @@
 
 <%= form_tag notes_path do %>
   Title
-  <input type="text" name="title" class="form-control title-field">
+  <%= text_field_tag 'note[title]', @note.title, class: 'form-control title-field' %>
   Content
-  <textarea name="content" class="form-control content-field"></textarea>
+  <%= text_area_tag 'note[content]', @note.content, class: 'form-control content-field' %>
   <input type="submit" value="submission" class="btn primary-btn">
 <% end %>

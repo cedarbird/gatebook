@@ -3,5 +3,5 @@
 <h2>Content</h2>
 <p><%= @note.content %></p>
 <%= link_to 'Edit', edit_note_path(@note.id), class: 'btn edit-btn' %>
-<%= link_to "Delete", destroy_note_path(@note.id), method: "delete", class: "btn destroy-btn", "data-comfirm" => "yes?" %>
+<%= link_to "Delete", note_path(@note.id), method: "delete", class: "btn destroy-btn", "data-comfirm" => "yes?" %>
 

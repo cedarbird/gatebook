@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
   root   'home#top'
   get    '/about' => 'home#about'
-  get    'notes/new'
-  post   '/notes' => 'notes#create'
-  get    '/notes' => 'notes#index'
-  get    '/notes/:id' => 'notes#show', as: 'note'
-  get    '/notes/:id/edit' => 'notes#edit', as: 'edit_note'
-  patch  '/notes/:id/update' => 'notes#update', as: 'update_note'
-  delete '/notes/:id/destroy' => 'notes#destroy', as: 'destroy_note'
+  resources :notes
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
