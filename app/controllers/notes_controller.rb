@@ -13,10 +13,11 @@ class NotesController < ApplicationController
   end
 
   def update
-    @note.title = params[:title]
-    @note.content = params[:content]
-    @note.save
-    redirect_to note_path(@note.id)
+    if @note.update(note_params)
+      redirect_to @note, notice: "submission was updated."
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -31,7 +32,7 @@ class NotesController < ApplicationController
   def create
     @note = Note.new(note_params)
     if @note.save
-      redirect_to @note
+      redirect_to @note, notice: "submission was saved."
     else
       render :new
     end

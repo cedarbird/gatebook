@@ -1,9 +1,2 @@
 <h1>new submission</h1>
-
-<%= form_tag notes_path do %>
-  Title
-  <%= text_field_tag 'note[title]', @note.title, class: 'form-control title-field' %>
-  Content
-  <%= text_area_tag 'note[content]', @note.content, class: 'form-control content-field' %>
-  <input type="submit" value="submission" class="btn primary-btn">
-<% end %>
+<%= render 'form' %>
