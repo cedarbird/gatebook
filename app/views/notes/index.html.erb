@@ -1,9 +1,4 @@
 <h1>Submission List</h1>
 <ul class="notes">
-<% @notes.each do |note| %>
-  <li>
-    <p>Title</p>
-    <span class="content"><%= link_to note.title, note_path(note.id) %></span>
-  </li>
-<% end %>
+ <%= render @notes %>
 </ul>
