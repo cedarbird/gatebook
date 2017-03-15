@@ -1,6 +1,11 @@
 class HomeController < ApplicationController
   def top
-    @message = "welcome to gatebook!"
+    if user_signed_in?
+      @note = Note.new
+      @notes = Note.all.order(created_at: :desc)
+    else
+      @message = "welcome to gatebook!"
+    end
   end
   def about
   end

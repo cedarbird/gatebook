@@ -8,17 +8,24 @@
 </head>
 <body>
 <header class="navbar">
-  <div class="container">
-    <div id="logo">Gatebook</div>
+<div id="logo"><%= link_to "Gatebook", root_path %></div>
+  <% if user_signed_in? %>
     <ul class="header-right">
-      <li><%= link_to 'Top',   root_path %></li>
-      <li><%= link_to 'About', about_path %></li>
-      <li><%= link_to 'NewNote',   new_note_path %></li>
-      <li><%= link_to 'NoteIndex', notes_path %></li>
-      <li><%= link_to 'UserIndex', users_path %></li>
+      <li><%= link_to "User List", users_path %></li>
+      <li><%= link_to current_user.email, current_user %></li>
+      <li><%= link_to "logout",  destroy_user_session_path, method: :delete %></li>
+
     </ul>
-  </div>
+  <% else %>
+    <ul class="header-right">
+      <li><%= link_to "Outline", about_path %></li>
+      <li><%= link_to "new user", new_user_registration_path %></li>
+      <li><%= link_to "login", new_user_session_path %></li>
+    </ul>
+  <% end %>
 </header>
+<p class="alert alert-success"><%= notice %></p>
+<p class="alert alert-danger"><%= alert %></p>
 
 <div class="container"><%= yield %></div> 
 

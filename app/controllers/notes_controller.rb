@@ -1,10 +1,8 @@
 class NotesController < ApplicationController
 
   before_action :set_note, only: [:show, :edit, :update, :destroy]
-
-  def new
-    @note = Note.new
-  end
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update]
 
   def show
   end
@@ -25,16 +23,13 @@ class NotesController < ApplicationController
     redirect_to notes_path
   end
 
-  def index
-    @notes = Note.all
-  end
-
   def create
-    @note = Note.new(note_params)
+    @note = current_user.notes.build(note_params)
     if @note.save
       redirect_to @note, notice: "submission was saved."
     else
-      render :new
+      @notes = Note.all.order(created_at: :desc)
+      render 'home/top'
     end
   end
 
@@ -44,7 +39,14 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:title, :content, :user_id)
+    params.require(:note).permit(:title, :content)
+  end
+
+  def correct_user
+    note = Note.find(params[:id])
+    if !currentuser?(note.user)
+      redirect_to root_path, alert: 'Not allowed!'
+    end
   end
 
 end

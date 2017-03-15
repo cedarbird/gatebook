@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :users
+  devise_for :users
+  resources :users, only: [:index, :show, :edit, :update]
   root   'home#top'
   get    '/about' => 'home#about'
-  resources :notes
+  resources :notes, only: [:show, :create, :edit, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
