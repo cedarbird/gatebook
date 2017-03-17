@@ -1,7 +1,14 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :like_notes]
+
+  # GET /users/:id/likes
+  def like_notes
+    @notes = @user.like_notes
+    @title = "liked! list"
+    render :show
+  end
 
   # GET /users
   # GET /users.json
@@ -12,6 +19,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @notes = @user.notes
+    @title = "Submission List"
   end
 
   # GET /users/new

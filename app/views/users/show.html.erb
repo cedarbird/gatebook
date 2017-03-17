@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Image:</strong>
+  <%= image_for(@user) %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @user.name %>
 </p>
@@ -10,16 +15,13 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <strong>Image:</strong>
-  <%= image_for(@user) %>
-</p>
-
 <% if currentuser?(@user) %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <% end %>
 <%= link_to 'Back', users_path %>
 
 <ul class="notes">
-  <%= render @user.notes %>
+  <h2><%= @title %></h2>
+  <%= render @notes %>
 </ul>
+<%= link_to @user.likes.count, like_notes_user_path(@user.id) %> liked.

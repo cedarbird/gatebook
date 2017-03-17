@@ -1,9 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update] do
+    member do
+      get :like_notes
+    end
+  end
   root   'home#top'
   get    '/about' => 'home#about'
-  resources :notes, only: [:show, :create, :edit, :update, :destroy]
+  resources :notes, only: [:show, :create, :edit, :update, :destroy] do
+    member do
+      get :liking_users
+    end
+  end
+  post '/like/:note_id' => 'likes#like', as: 'like'
+  delete '/unlike/:note_id' => 'likes#unlike', as: 'unlike'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

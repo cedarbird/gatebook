@@ -9,3 +9,8 @@
       <%= link_to note.title, note_path(note.id) %>
     </span>
   </li>
+  <div>
+    <small>
+      <%= note.likes.count  %> liked
+    </small>
+  </div>
